@@ -11,6 +11,14 @@ function NavTabs() {
       </li>
       <li className="nav-item">
         <Link
+          to="/books"
+          className={window.location.pathname === "/books" ? "nav-link active" : "nav-link"}
+        >
+          Books
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
           to="/about"
           className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}
         >
@@ -43,13 +51,20 @@ function NavTabs() {
       </li>
       <li className="nav-item">
         <Link
-          to="/books"
-          className={window.location.pathname === "/books" ? "nav-link active" : "nav-link"}
+          to="/omdbcontainer"
+          className={window.location.pathname === "/omdbcontainer" ? "nav-link active" : "nav-link"}
         >
-          Books
+          OMDB
         </Link>
       </li>
-
+      <li className="nav-item">
+        <Link
+          to="/googlecontainer"
+          className={window.location.pathname === "/googlecontainer" ? "nav-link active" : "nav-link"}
+        >
+          Book Search
+        </Link>
+      </li>
     </ul>
   );
 }
