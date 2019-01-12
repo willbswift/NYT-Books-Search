@@ -5,16 +5,32 @@ function NavTabs() {
   return (
     <ul className="nav nav-tabs">
       <li className="nav-item">
-        <Link to="/" className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}>
-          Home
-        </Link>
-      </li>
-      <li className="nav-item">
         <Link
           to="/books"
           className={window.location.pathname === "/books" ? "nav-link active" : "nav-link"}
         >
           Books
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/googlecontainer"
+          className={window.location.pathname === "/googlecontainer" ? "nav-link active" : "nav-link"}
+        >
+          Book Search
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/omdbcontainer"
+          className={window.location.pathname === "/omdbcontainer" ? "nav-link active" : "nav-link"}
+        >
+          OMDB
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link to="/" className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}>
+          Home
         </Link>
       </li>
       <li className="nav-item">
@@ -49,22 +65,7 @@ function NavTabs() {
           Learn
         </Link>
       </li>
-      <li className="nav-item">
-        <Link
-          to="/omdbcontainer"
-          className={window.location.pathname === "/omdbcontainer" ? "nav-link active" : "nav-link"}
-        >
-          OMDB
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link
-          to="/googlecontainer"
-          className={window.location.pathname === "/googlecontainer" ? "nav-link active" : "nav-link"}
-        >
-          Book Search
-        </Link>
-      </li>
+
     </ul>
   );
 }

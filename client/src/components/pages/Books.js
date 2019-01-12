@@ -31,8 +31,8 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input name="title" placeholder="Title (required)" />
-              <Input name="author" placeholder="Author (required)" />
-              <TextArea name="synopsis" placeholder="Synopsis (Optional)" />
+              <Input name="authors" placeholder="Authors (required)" />
+              <TextArea name="description" placeholder="Description (Optional)" />
               <FormBtn>Submit Book</FormBtn>
             </form>
           </Col>
@@ -46,7 +46,7 @@ class Books extends Component {
                   <ListItem key={book._id}>
                     <a href={"/books/" + book._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {book.title} by {book.authors}
                       </strong>
                     </a>
                     <DeleteBtn />

@@ -13,9 +13,9 @@ class GoogleContainer extends Component {
     search: ""
   };
 
-  // When this component mounts, search for the movie "The Matrix"
+  // When this component mounts, search for the book "Foundation"
   componentDidMount() {
-    this.searchBooks("The Matrix");
+    this.searchBooks("Foundation");
   }
 
   searchBooks = query => {
@@ -48,11 +48,10 @@ class GoogleContainer extends Component {
             >
               {this.state.result.Title ? (
                 <BookDetail
-                  title={this.state.result.Title}
-                  src={this.state.result.Poster}
-                  director={this.state.result.Director}
-                  genre={this.state.result.Genre}
-                  released={this.state.result.Released}
+                  title={this.state.result.items.volumeInfo.title}
+                  src={this.state.result.items.volumeInfo.imageLinks.thumbnail}
+                  authors={this.state.result.items.volumeInfo.authors}
+                  link={this.state.result.items.selfLink}
                 />
               ) : (
                 <h3>No Results to Display</h3>

@@ -3,14 +3,7 @@ const BASEURL = "https://www.omdbapi.com/?t=";
 const APIKEY = "&apikey=trilogy";
 
 const BASEURL1 = "https://www.googleapis.com/books/v1/volumes?q=";
-// const APIKEY1 = "&callback=handleResponse";
-
-// const APIKEY2 = "key=AIzaSyAjP3iFTselHae7iJsXpO8Jj_d4wFVOVxg";
-
-// https://www.googleapis.com/demo/v1?key=AIzaSyAjP3iFTselHae7iJsXpO8Jj_d4wFVOVxg
-// https://www.googleapis.com/books?q=flowers+inauthor:keyes&key=AIzaSyAjP3iFTselHae7iJsXpO8Jj_d4wFVOVxg
-
-// https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse
+// const APIKEY1 = "key=AIzaSyAjP3iFTselHae7iJsXpO8Jj_d4wFVOVxg";
 
 export default {
   // Gets all books
