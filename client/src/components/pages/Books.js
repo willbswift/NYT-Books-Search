@@ -21,6 +21,21 @@ class Books extends Component {
       .catch(err => console.log(err));
   };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log(this.state) //check
+    if (this.state.title && this.state.author) {
+      API.saveBook({
+        title: this.state.title,
+        author: this.state.author,
+        synopsis: this.state.synopsis
+      })
+        .then(res => this.loadBooks()) //console.log(res)
+        .catch(err => console.log(err));
+    }
+  };
+
+
   render() {
     return (
       <Container fluid>
@@ -33,6 +48,8 @@ class Books extends Component {
               <Input name="title" placeholder="Title (required)" />
               <Input name="authors" placeholder="Authors (required)" />
               <TextArea name="description" placeholder="Description (Optional)" />
+              <Input name="image" placeholder="Image link" />
+              <Input name="link" placeholder="Page Link (required)" />
               <FormBtn>Submit Book</FormBtn>
             </form>
           </Col>

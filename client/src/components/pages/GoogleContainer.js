@@ -9,7 +9,7 @@ import API from "../../utils/API";
 
 class GoogleContainer extends Component {
   state = {
-    result: {},
+    result: [],
     search: ""
   };
 
@@ -20,8 +20,10 @@ class GoogleContainer extends Component {
 
   searchBooks = query => {
     API.searchGoogle(query)
-      .then(res => this.setState({ result: res.data }))
-      .catch(err => console.log(err));
+      .then(res => {
+        // console.log(res);
+        this.setState({ result: res.data.items })
+      }).catch(err => console.log(err));
   };
 
   handleInputChange = event => {
@@ -39,24 +41,32 @@ class GoogleContainer extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <Container>
         <Row>
           <Col size="md-8">
-            <Card
+          {this.state.result.map(item => {
+            return <Card key={item.title}>
+            {item.volumeInfo.title}
+            <p>item.description</p>
+            <img src={item.src} />
+            </Card> 
+          })}
+            {/* <Card
               heading={this.state.result.Title || "Search for a Book to Begin"}
             >
               {this.state.result.Title ? (
                 <BookDetail
-                  title={this.state.result.items.volumeInfo.title}
-                  src={this.state.result.items.volumeInfo.imageLinks.thumbnail}
-                  authors={this.state.result.items.volumeInfo.authors}
-                  link={this.state.result.items.selfLink}
+                  title={this.state.result.items[0].volumeInfo.title}
+                  src={this.state.result.items[0].volumeInfo.imageLinks.thumbnail}
+                  authors={this.state.result.items[0].volumeInfo.authors}
+                  link={this.state.result.items[0].selfLink}
                 />
               ) : (
                 <h3>No Results to Display</h3>
               )}
-            </Card>
+            </Card> */}
           </Col>
           <Col size="md-4">
             <Card heading="Search">
