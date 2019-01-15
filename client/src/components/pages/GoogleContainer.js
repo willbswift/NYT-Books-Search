@@ -48,25 +48,22 @@ class GoogleContainer extends Component {
           <Col size="md-8">
           {this.state.result.map(item => {
             return <Card key={item.title}>
-            {item.volumeInfo.title}
-            <p>item.description</p>
-            <img src={item.src} />
+              <img src={item.volumeInfo.imageLinks.thumbnail} alt="Book Cover" />
+              <h2>
+                {item.volumeInfo.title} 
+              </h2>
+              <h3>by {item.volumeInfo.authors}</h3>
+              <a href={item.volumeInfo.previewLink} target="_blank">More Info On Book</a>
+              <article>
+                <h3>Synopsis</h3>
+                <p>
+                  {item.volumeInfo.description}
+                </p>
+              </article>  
             </Card> 
-          })}
-            {/* <Card
-              heading={this.state.result.Title || "Search for a Book to Begin"}
-            >
-              {this.state.result.Title ? (
-                <BookDetail
-                  title={this.state.result.items[0].volumeInfo.title}
-                  src={this.state.result.items[0].volumeInfo.imageLinks.thumbnail}
-                  authors={this.state.result.items[0].volumeInfo.authors}
-                  link={this.state.result.items[0].selfLink}
-                />
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-            </Card> */}
+          })} : (
+            <h3>No Results to Display</h3>
+          )     
           </Col>
           <Col size="md-4">
             <Card heading="Search">

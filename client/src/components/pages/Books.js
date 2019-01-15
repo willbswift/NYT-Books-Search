@@ -5,10 +5,16 @@ import DeleteBtn from "../DeleteBtn";
 import { Col, Row, Container } from "../Grid";
 import { List, ListItem } from "../List";
 import { Input, TextArea, FormBtn } from "../Form";
+import { Link } from "react-router-dom";
 
 class Books extends Component {
   state = {
-    books: []
+    books: [],
+    title: "",
+    authors: "",
+    description: "",
+    image: "",
+    link: ""
   };
 
   componentDidMount() {
@@ -17,26 +23,41 @@ class Books extends Component {
 
   loadBooks = () => {
     API.getBooks()
-      .then(res => this.setState({ books: res.data }))
+      .then(res =>
+        this.setState({ books: res.data, title: "", authors: "", description: "", image: "",
+        link: ""})
+      )
+      .catch(err => console.log(err));
+  };
+  
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.loadBooks())
       .catch(err => console.log(err));
   };
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-  
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state) //check
     if (this.state.title && this.state.author) {
       API.saveBook({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        authors: this.state.authors,
+        description: this.state.description,
+        image: this.state.image,
+        link: this.state.link
       })
         .then(res => this.loadBooks()) //console.log(res)
         .catch(err => console.log(err));
     }
   };
-
 
   render() {
     return (
@@ -47,12 +68,42 @@ class Books extends Component {
               <h1>What Books Should I Read?</h1>
             </Jumbotron>
             <form>
-              <Input name="title" placeholder="Title (required)" />
-              <Input name="authors" placeholder="Authors (required)" />
-              <TextArea name="description" placeholder="Description (Optional)" />
-              <Input name="image" placeholder="Image link" />
-              <Input name="link" placeholder="Page Link (required)" />
-              <FormBtn>Submit Book</FormBtn>
+              <Input
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                name="title"
+                placeholder="Title (required)"
+              />
+              <Input
+                value={this.state.authors}
+                onChange={this.handleInputChange}
+                name="authors"
+                placeholder="Author(s) (required)"
+              />
+              <TextArea
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                name="description"
+                placeholder="Description (Optional)"
+              />
+              <Input
+                value={this.state.image}
+                onChange={this.handleInputChange}
+                name="image"
+                placeholder="Image Link"
+              />
+              <Input
+                value={this.state.link}
+                onChange={this.handleInputChange}
+                name="link"
+                placeholder="Link Address to more Info (required)"
+              />
+              <FormBtn
+                disabled={!(this.state.authors && this.state.title)}
+                onClick={this.handleFormSubmit}
+              >
+                Submit Book
+              </FormBtn>            
             </form>
           </Col>
           <Col size="md-6 sm-12">

@@ -1,5 +1,7 @@
 import React from "react";
-    import Nav from "./components/Nav";
+    // import Nav from "./components/Nav";
+    // import Detail from "./components/pages/Detail";
+    // import NoMatch from "./components/pages/NoMatch";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
@@ -25,6 +27,10 @@ function App() {
         <Route exact path="/about" component={About} />
         <Route exact path="/blog" component={Blog} />
         <Route path="/contact" component={Contact} />
+            {/* <Switch>
+              <Route exact path="/books/:id" component={Detail} />
+              <Route component={NoMatch} />
+            </Switch> */}
       </div>
     </Router>
   );
