@@ -3,7 +3,7 @@ import React from "react";
     // import Detail from "./components/pages/Detail";
     // import NoMatch from "./components/pages/NoMatch";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
 import Books from "./components/pages/Books";
 import GoogleContainer from "./components/pages/GoogleContainer";

@@ -4,7 +4,7 @@ import Row from "../Row";
 import Col from "../Col";
 import Card from "../Card";
 import SearchFormG from "../SearchFormG";
-import BookDetail from "../BookDetail";
+// import BookDetail from "../BookDetail";
 import API from "../../utils/API";
 
 class GoogleContainer extends Component {
