@@ -46,7 +46,8 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state) //check
-    if (this.state.title && this.state.author) {
+    if (this.state.title && this.state.authors) {
+      console.log("This if statement is ok");
       API.saveBook({
         title: this.state.title,
         authors: this.state.authors,

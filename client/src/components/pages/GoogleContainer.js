@@ -48,7 +48,7 @@ class GoogleContainer extends Component {
           <Col size="md-8">
           {this.state.result.map(items => {
             return <Card key={items.title}>
-              <img src={items.volumeInfo.imageLinks.thumbnail} alt="Book Cover" />
+            {items.volumeInfo.imageLinks ? <img src={items.volumeInfo.imageLinks.thumbnail} alt="Book Cover" /> : '' }
               <h2>
                 {items.volumeInfo.title} 
               </h2>
