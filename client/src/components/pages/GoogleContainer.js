@@ -67,6 +67,7 @@ class GoogleContainer extends Component {
     event.preventDefault();
     console.log("submit button triggered") //check
     console.log(this.state) 
+      // THE NEXT PROBLEM TO TACKEL IS IN THIS LINE BELOW
     if (this.state.result.volumeInfo.title && this.state.result.volumeInfo.authors) {
       console.log("This if statement is ok");
       API.saveBook({
