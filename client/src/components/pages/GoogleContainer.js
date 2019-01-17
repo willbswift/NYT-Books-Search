@@ -11,13 +11,19 @@ import API from "../../utils/API";
       // import { Col, Row, Container } from "../Grid";
       // import { List, ListItem } from "../List";
       import { Input, TextArea } from "../Form";
-      import { FormBtn } from "../Form";
+      import { FormBtn2 } from "../Form";
       // import { Link } from "react-router-dom";
 
 class GoogleContainer extends Component {
   state = {
     result: [],
     search: ""
+    // books: [],
+    // title: "",
+    // authors: "",
+    // description: "",
+    // image: "",
+    // link: ""
   };
 
   // When this component mounts, search for the book "Foundation"
@@ -28,7 +34,7 @@ class GoogleContainer extends Component {
   searchBooks = query => {
     API.searchGoogle(query)
       .then(res => {
-        // console.log(res);
+        console.log(res);
         this.setState({ result: res.data.items })
       }).catch(err => console.log(err));
   };
@@ -59,8 +65,9 @@ class GoogleContainer extends Component {
     // When the form is submitted, saves the selected book to the database
   handleFormSubmit2 = event => {
     event.preventDefault();
-    console.log(this.state) //check
-    if (this.state.title && this.state.authors) {
+    console.log("submit button triggered") //check
+    console.log(this.state) 
+    if (this.state.result.volumeInfo.title && this.state.result.volumeInfo.authors) {
       console.log("This if statement is ok");
       API.saveBook({
         title: this.state.title,
@@ -84,7 +91,7 @@ class GoogleContainer extends Component {
           </Jumbotron>
           <Col size="md-8">
           {this.state.result.map(items => {
-            return <Card key={items.title}>
+            return <Card key={items.id}>
             {items.volumeInfo.imageLinks ? <img 
             
               value={this.state.image}
@@ -127,12 +134,12 @@ class GoogleContainer extends Component {
                   {items.volumeInfo.description}
                 </p>
               </article> 
-              <FormBtn
+              <FormBtn2
                 disabled={!(this.state.authors && this.state.title)}
-                onClick={this.handleFormSubmit2}
+                handleFormSubmit2={this.handleFormSubmit2}
               >
                 Submit Book
-              </FormBtn>    
+              </FormBtn2>    
             </Card> 
           })} : (
             <h3>No Results to Display</h3>
