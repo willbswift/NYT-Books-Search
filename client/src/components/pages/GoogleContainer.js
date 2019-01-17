@@ -79,6 +79,8 @@ class GoogleContainer extends Component {
       })
         .then(res => this.loadBooks()) //console.log(res)
         .catch(err => console.log(err));
+    } else {
+      console.log("Didn't work");
     }
   };
 
