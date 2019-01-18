@@ -63,21 +63,19 @@ class GoogleContainer extends Component {
   };
 
     // When the form is submitted, saves the selected book to the database
-  handleFormSubmit2 = event => {
-    event.preventDefault();
-    console.log("submit button triggered") //check
-    console.log(this.state) 
-      // THE NEXT PROBLEM TO TACKEL IS IN THIS LINE BELOW
-    if (this.state.result.volumeInfo.title && this.state.result.volumeInfo.authors) {
+  handleFormSubmit2 = theBook => {
+    console.log(theBook)
+    if (theBook.volumeInfo.title && theBook.volumeInfo.authors) {
       console.log("This if statement is ok");
       API.saveBook({
-        title: this.state.title,
-        authors: this.state.authors,
-        description: this.state.description,
-        image: this.state.image,
-        link: this.state.link
+        title: theBook.volumeInfo.title,
+        authors: theBook.volumeInfo.authors[0],
+        description: theBook.volumeInfo.description,
+        image: theBook.volumeInfo.imageLinks.thumbnail,
+        link: theBook.volumeInfo.previewLink
       })
-        .then(res => this.loadBooks()) //console.log(res)
+        // .then(res => this.loadBooks()) 
+        // console.log(res)
         .catch(err => console.log(err));
     } else {
       console.log("Didn't work");
@@ -93,60 +91,29 @@ class GoogleContainer extends Component {
               <h1>NYT Google Book Search</h1>
           </Jumbotron>
           <Col size="md-8">
-          {this.state.result.map(items => {
-            return <Card key={items.id}>
-            {items.volumeInfo.imageLinks ? <img 
-            
-              value={this.state.image}
-              onChange={this.handleInputChange2}
-              name="image"
-                        
-            src={items.volumeInfo.imageLinks.thumbnail} alt="Book Cover" /> : '' }
-              <h2 
-                
-                value={this.state.title}
-                onChange={this.handleInputChange2}
-                name="title"
-                
-                >
-                {items.volumeInfo.title} 
+          {this.state.result.map(item => {
+            return <Card key={item.id}>
+            {item.volumeInfo.imageLinks ? <img    
+            src={item.volumeInfo.imageLinks.thumbnail} alt="Book Cover" /> : '' }
+              <h2>
+                {item.volumeInfo.title} 
               </h2>
-              <h3
-              
-                value={this.state.authors}
-                onChange={this.handleInputChange2}
-                name="authors"            
-              
-              >by {items.volumeInfo.authors}</h3>
-              <a 
-              
-                value={this.state.link}
-                onChange={this.handleInputChange2}
-                name="link"
-              
-              href={items.volumeInfo.previewLink} target="_blank">More Info On Book</a>
+              <h3>by {item.volumeInfo.authors}</h3>
+              <a href={item.volumeInfo.previewLink} target="_blank">More Info On Book</a>
               <article>
                 <h3>Synopsis</h3>
-                <p
-                
-                  value={this.state.description}
-                  onChange={this.handleInputChange2}
-                  name="description"
-                
-                >
-                  {items.volumeInfo.description}
+                <p>
+                  {item.volumeInfo.description}
                 </p>
               </article> 
               <FormBtn2
                 disabled={!(this.state.authors && this.state.title)}
-                handleFormSubmit2={this.handleFormSubmit2}
+                handleFormSubmit2={() => this.handleFormSubmit2(item)}
               >
                 Submit Book
               </FormBtn2>    
             </Card> 
-          })} : (
-            <h3>No Results to Display</h3>
-          )     
+          })} 
           </Col>
           <Col size="md-4">
             <Card heading="Search">

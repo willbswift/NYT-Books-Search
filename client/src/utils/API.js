@@ -23,12 +23,6 @@ export default {
     console.log("about to save a book");
     return axios.post("/api/books", bookData);
   },
-  
-              // Saves a book FROM THE GOOGLE BOOKS PAGE to the database
-              // saveBook: function(bookData) {
-              //   console.log("about to save a book");
-              //   return axios.post("/api/books2", bookData);
-              // },
 
   //OMDB search
   search: function(query) {
